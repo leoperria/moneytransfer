@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @JsonSnakeCase
 public class Transfer {
 
+
     private String id;
 
     @NotEmpty
