@@ -1,4 +1,4 @@
-package com.interview;
+package com.interview.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.dropwizard.jackson.JsonSnakeCase;
@@ -6,9 +6,21 @@ import io.dropwizard.validation.ValidationMethod;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @JsonSnakeCase
-public class Transaction {
+public class Transfer {
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @NotEmpty
+    private String id;
 
     @NotEmpty
     private String sourceAccountId;
@@ -16,14 +28,16 @@ public class Transaction {
     @NotEmpty
     private String destinationAccountId;
 
+    @NotNull
     @Min(1)
     private Integer amount;
 
-    public Transaction() {
+    public Transfer() {
         // Jackson constructor
     }
 
-    public Transaction(String sourceAccountId, String destinationAccountId, Integer amount) {
+    public Transfer(String id, String sourceAccountId, String destinationAccountId, Integer amount) {
+        this.id = id;
         this.sourceAccountId = sourceAccountId;
         this.destinationAccountId = destinationAccountId;
         this.amount = amount;
@@ -59,6 +73,28 @@ public class Transaction {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("amount must be an integer value");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Transfer)) return false;
+
+        Transfer transfer = (Transfer) o;
+
+        if (!getId().equals(transfer.getId())) return false;
+        if (!getSourceAccountId().equals(transfer.getSourceAccountId())) return false;
+        if (!getDestinationAccountId().equals(transfer.getDestinationAccountId())) return false;
+        return getAmount().equals(transfer.getAmount());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getSourceAccountId().hashCode();
+        result = 31 * result + getDestinationAccountId().hashCode();
+        result = 31 * result + getAmount().hashCode();
+        return result;
     }
 
     @JsonIgnore

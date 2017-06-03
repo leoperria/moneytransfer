@@ -1,5 +1,6 @@
-package com.interview;
+package com.interview.dao.mapper;
 
+import com.interview.models.Account;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 

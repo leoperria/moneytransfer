@@ -1,4 +1,7 @@
-package com.interview;
+package com.interview.resources;
+
+import com.interview.dao.AccountDAO;
+import com.interview.models.Account;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,9 +15,9 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class AccountResource {
 
-    private ServiceDAO dao;
+    private AccountDAO dao;
 
-    public AccountResource(ServiceDAO dao) {
+    public AccountResource(AccountDAO dao) {
         this.dao = dao;
     }
 

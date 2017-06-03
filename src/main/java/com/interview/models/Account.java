@@ -1,4 +1,4 @@
-package com.interview;
+package com.interview.models;
 
 public class Account {
 

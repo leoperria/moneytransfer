@@ -1,8 +1,8 @@
-package com.interview;
+package com.interview.dao;
 
+import com.interview.models.Account;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
-import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import java.util.List;
 
@@ -10,13 +10,11 @@ import java.util.List;
  * http://www.dropwizard.io/1.0.6/docs/manual/jdbi.html
  * http://jdbi.org/dbi_handle_and_statement/
  */
-
-@RegisterMapper(AccountResultMapper.class)
-public class ServiceDAO {
+public class AccountDAO {
 
     private DBI dbi;
 
-    public ServiceDAO(DBI dbi) {
+    public AccountDAO(DBI dbi) {
         this.dbi = dbi;
     }
 

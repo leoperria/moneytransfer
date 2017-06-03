@@ -1,5 +1,11 @@
 package com.interview;
 
+import com.interview.dao.AccountDAO;
+import com.interview.dao.TransferDAO;
+import com.interview.dao.mapper.AccountResultMapper;
+import com.interview.dao.mapper.TransferResultMapper;
+import com.interview.resources.AccountResource;
+import com.interview.resources.TransferResource;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.flyway.FlywayBundle;
@@ -50,14 +56,15 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
 
         // Register Result Set Mapper for POJO Account with UUID id.
         dbi.registerMapper(new AccountResultMapper());
+        dbi.registerMapper(new TransferResultMapper());
 
-
-        ServiceDAO serviceDAO = new ServiceDAO(dbi);
+        final AccountDAO serviceDAO = new AccountDAO(dbi);
+        final TransferDAO transferDAO = dbi.onDemand(TransferDAO.class);;
         AccountResource accountResource = new AccountResource(serviceDAO);
-        TransactionResource transactionResource = new TransactionResource(serviceDAO);
+        TransferResource transferResource = new TransferResource(transferDAO);
 
         //register your API resource here
         env.jersey().register(accountResource);
-        env.jersey().register(transactionResource);
+        env.jersey().register(transferResource);
     }
 }
