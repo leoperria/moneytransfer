@@ -1,10 +1,11 @@
 package com.interview.resources;
 
 import com.interview.dao.AccountDAO;
-import com.interview.models.Account;
+import com.interview.model.Account;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -36,7 +37,11 @@ public class AccountResource {
     @GET
     @Path("/accounts/{id}")
     public Account getAllAccounts(@PathParam("id") String id) {
-        return dao.getAccount(id);
+        Account account = dao.getAccount(id);
+        if (account == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return account;
     }
 
 }

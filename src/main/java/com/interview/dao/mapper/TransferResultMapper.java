@@ -1,6 +1,6 @@
 package com.interview.dao.mapper;
 
-import com.interview.models.Transfer;
+import com.interview.model.Transfer;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 

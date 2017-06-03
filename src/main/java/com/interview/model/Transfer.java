@@ -1,6 +1,7 @@
-package com.interview.models;
+package com.interview.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Objects;
 import io.dropwizard.jackson.JsonSnakeCase;
 import io.dropwizard.validation.ValidationMethod;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -11,15 +12,6 @@ import javax.validation.constraints.NotNull;
 @JsonSnakeCase
 public class Transfer {
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @NotEmpty
     private String id;
 
     @NotEmpty
@@ -41,6 +33,14 @@ public class Transfer {
         this.sourceAccountId = sourceAccountId;
         this.destinationAccountId = destinationAccountId;
         this.amount = amount;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSourceAccountId() {
@@ -79,31 +79,22 @@ public class Transfer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Transfer)) return false;
-
         Transfer transfer = (Transfer) o;
-
-        if (!getId().equals(transfer.getId())) return false;
-        if (!getSourceAccountId().equals(transfer.getSourceAccountId())) return false;
-        if (!getDestinationAccountId().equals(transfer.getDestinationAccountId())) return false;
-        return getAmount().equals(transfer.getAmount());
+        return Objects.equal(getId(), transfer.getId()) &&
+                Objects.equal(getSourceAccountId(), transfer.getSourceAccountId()) &&
+                Objects.equal(getDestinationAccountId(), transfer.getDestinationAccountId()) &&
+                Objects.equal(getAmount(), transfer.getAmount());
     }
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + getSourceAccountId().hashCode();
-        result = 31 * result + getDestinationAccountId().hashCode();
-        result = 31 * result + getAmount().hashCode();
-        return result;
+        return Objects.hashCode(id, sourceAccountId, destinationAccountId, amount);
     }
 
     @JsonIgnore
     @ValidationMethod(message = "source_account_id must be different from destination_account_id")
     public boolean isNotSourceAndDestinationEqual() {
-        if (this.sourceAccountId != null && this.destinationAccountId != null)
-            return !this.sourceAccountId.equals(this.destinationAccountId);
-        else
-            return true;
+        return !(this.sourceAccountId != null && this.destinationAccountId != null) || !this.sourceAccountId.equals(this.destinationAccountId);
     }
 
 }

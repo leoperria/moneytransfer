@@ -58,8 +58,8 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
         dbi.registerMapper(new AccountResultMapper());
         dbi.registerMapper(new TransferResultMapper());
 
-        final AccountDAO serviceDAO = new AccountDAO(dbi);
-        final TransferDAO transferDAO = dbi.onDemand(TransferDAO.class);;
+        final AccountDAO serviceDAO = dbi.onDemand(AccountDAO.class);
+        final TransferDAO transferDAO = dbi.onDemand(TransferDAO.class);
         AccountResource accountResource = new AccountResource(serviceDAO);
         TransferResource transferResource = new TransferResource(transferDAO);
 
