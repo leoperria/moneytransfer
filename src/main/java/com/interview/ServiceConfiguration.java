@@ -2,6 +2,7 @@ package com.interview;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
+import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.flyway.FlywayFactory;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
  * http://www.dropwizard.io/1.0.6/docs/manual/core.html#configuration
  */
 public class ServiceConfiguration extends Configuration {
+
     @Valid
     @NotNull
     @JsonProperty("database")
@@ -36,5 +38,14 @@ public class ServiceConfiguration extends Configuration {
 
     public void setFlywayFactory(FlywayFactory flywayFactory) {
         this.flywayFactory = flywayFactory;
+    }
+
+    @Valid
+    @NotNull
+    @JsonProperty("httpClient")
+    private JerseyClientConfiguration httpClient = new JerseyClientConfiguration();
+
+    public JerseyClientConfiguration getJerseyClientConfiguration() {
+        return httpClient;
     }
 }

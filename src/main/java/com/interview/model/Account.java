@@ -5,6 +5,10 @@ public class Account {
     private String id;
     private Integer balance;
 
+    public Account() {
+        // Jackson constructor
+    }
+
     public Account(String id, Integer balance) {
         this.id = id;
         this.balance = balance;

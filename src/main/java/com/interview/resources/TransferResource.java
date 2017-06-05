@@ -2,13 +2,15 @@ package com.interview.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.interview.ServiceException;
+import com.interview.services.MoneyService;
 import com.interview.dao.TransferDAO;
 import com.interview.model.Transfer;
-import org.skife.jdbi.v2.sqlobject.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -20,31 +22,28 @@ public class TransferResource {
 
     private final static Logger logger = LoggerFactory.getLogger(TransferResource.class);
 
-    private TransferDAO transferDao;
+    final private MoneyService moneyService;
+    final private TransferDAO transferDAO;
 
-    public TransferResource(TransferDAO transferDao) {
-        this.transferDao = transferDao;
+    public TransferResource(MoneyService moneyService, TransferDAO transferDAO) {
+        this.moneyService = moneyService;
+        this.transferDAO = transferDAO;
     }
 
-    /*
-      Rules:
-      - sourceAccountId and destinationAccountId must be two valid account ids
-      - sourceAccountId can't have a negative balance after the transaction is committed
-     */
-
     @POST
-    @Transaction
     @Path("/transfer")
-    public Transfer createTransaction(@Valid Transfer transfer) throws JsonProcessingException {
-        logger.info(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(transfer));
-        final String transferId = transferDao.create(transfer);
-        return transferDao.get(transferId);
+    public Transfer transferFunds(@Valid Transfer transfer)  {
+        try {
+            return moneyService.processTransfer(transfer);
+        } catch (ServiceException e) {
+            throw new WebApplicationException(e.getMessage(), e, Response.Status.PRECONDITION_FAILED);
+        }
     }
 
     @GET
     @Path("/transfer/{id}")
-    public Transfer getTransfer(@PathParam("id") String id) {
-        final Transfer transfer = transferDao.get(id);
+    public Transfer getTransfer(@PathParam("id") @NotNull String id) {
+        final Transfer transfer = transferDAO.get(id);
         if (transfer == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }

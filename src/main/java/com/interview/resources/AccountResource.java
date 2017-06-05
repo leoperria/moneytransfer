@@ -1,7 +1,9 @@
 package com.interview.resources;
 
 import com.interview.dao.AccountDAO;
+import com.interview.dao.TransferDAO;
 import com.interview.model.Account;
+import com.interview.model.Transfer;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -16,10 +18,12 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class AccountResource {
 
-    private AccountDAO dao;
+    final private AccountDAO accountDAO;
+    final private TransferDAO transferDAO;
 
-    public AccountResource(AccountDAO dao) {
-        this.dao = dao;
+    public AccountResource(AccountDAO accountDAO, TransferDAO transferDAO) {
+        this.accountDAO = accountDAO;
+        this.transferDAO = transferDAO;
     }
 
     @GET
@@ -31,17 +35,27 @@ public class AccountResource {
     @GET
     @Path("/accounts")
     public List<Account> getAllAccounts() {
-        return dao.getAllAccounts();
+        return accountDAO.getAllAccounts();
     }
 
     @GET
     @Path("/accounts/{id}")
-    public Account getAllAccounts(@PathParam("id") String id) {
-        Account account = dao.getAccount(id);
-        if (account == null){
+    public Account getAccount(@PathParam("id") String id) {
+        Account account = accountDAO.getAccount(id);
+        if (account == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
         return account;
+    }
+
+    @GET
+    @Path("/accounts/{id}/transfers")
+    public List<Transfer> getAllTransferForAccount(@PathParam("id") String id) {
+        Account account = accountDAO.getAccount(id);
+        if (account == null) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return transferDAO.getAllTransferForAccount(id);
     }
 
 }
