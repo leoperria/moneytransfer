@@ -1,7 +1,6 @@
 package com.interview.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.base.Objects;
 import io.dropwizard.jackson.JsonSnakeCase;
 import io.dropwizard.validation.ValidationMethod;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -74,22 +73,6 @@ public class Transfer {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("amount must be an integer value");
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Transfer)) return false;
-        Transfer transfer = (Transfer) o;
-        return Objects.equal(getId(), transfer.getId()) &&
-                Objects.equal(getSourceAccountId(), transfer.getSourceAccountId()) &&
-                Objects.equal(getDestinationAccountId(), transfer.getDestinationAccountId()) &&
-                Objects.equal(getAmount(), transfer.getAmount());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id, sourceAccountId, destinationAccountId, amount);
     }
 
     @JsonIgnore
