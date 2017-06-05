@@ -1,5 +1,6 @@
 package com.interview.resources;
 
+import com.codahale.metrics.annotation.Timed;
 import com.interview.dao.AccountDAO;
 import com.interview.dao.TransferDAO;
 import com.interview.model.Account;
@@ -27,18 +28,21 @@ public class AccountResource {
     }
 
     @GET
+    @Timed
     @Path("ping")
     public String ping() {
         return "Pong";
     }
 
     @GET
+    @Timed
     @Path("/accounts")
     public List<Account> getAllAccounts() {
         return accountDAO.getAllAccounts();
     }
 
     @GET
+    @Timed
     @Path("/accounts/{id}")
     public Account getAccount(@PathParam("id") String id) {
         Account account = accountDAO.getAccount(id);
@@ -49,6 +53,7 @@ public class AccountResource {
     }
 
     @GET
+    @Timed
     @Path("/accounts/{id}/transfers")
     public List<Transfer> getAllTransferForAccount(@PathParam("id") String id) {
         Account account = accountDAO.getAccount(id);

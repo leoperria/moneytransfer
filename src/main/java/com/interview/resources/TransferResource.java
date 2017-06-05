@@ -1,5 +1,6 @@
 package com.interview.resources;
 
+import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.interview.ServiceException;
@@ -31,6 +32,7 @@ public class TransferResource {
     }
 
     @POST
+    @Timed
     @Path("/transfer")
     public Transfer transferFunds(@Valid Transfer transfer)  {
         try {
@@ -41,6 +43,7 @@ public class TransferResource {
     }
 
     @GET
+    @Timed
     @Path("/transfer/{id}")
     public Transfer getTransfer(@PathParam("id") @NotNull String id) {
         final Transfer transfer = transferDAO.get(id);
