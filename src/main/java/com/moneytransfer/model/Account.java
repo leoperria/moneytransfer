@@ -1,4 +1,4 @@
-package com.interview.model;
+package com.moneytransfer.model;
 
 public class Account {
 

@@ -1,10 +1,9 @@
-package com.interview.resources;
+package com.moneytransfer.resources;
 
-import com.interview.client.MoneyTransferClient;
-import com.interview.model.Account;
-import com.interview.model.Transfer;
+import com.moneytransfer.client.MoneyTransferClient;
+import com.moneytransfer.model.Account;
+import com.moneytransfer.model.Transfer;
 
-import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

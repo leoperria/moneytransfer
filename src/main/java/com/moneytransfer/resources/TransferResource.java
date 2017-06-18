@@ -1,18 +1,22 @@
-package com.interview.resources;
+package com.moneytransfer.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.interview.ServiceException;
-import com.interview.services.MoneyService;
-import com.interview.dao.TransferDAO;
-import com.interview.model.Transfer;
+import com.moneytransfer.ServiceException;
+import com.moneytransfer.dao.TransferDAO;
+import com.moneytransfer.model.Transfer;
+import com.moneytransfer.services.MoneyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 

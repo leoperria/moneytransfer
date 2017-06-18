@@ -1,4 +1,4 @@
-package com.interview;
+package com.moneytransfer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;

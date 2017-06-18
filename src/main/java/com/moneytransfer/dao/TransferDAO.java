@@ -1,8 +1,12 @@
-package com.interview.dao;
+package com.moneytransfer.dao;
 
-import com.interview.dao.mapper.TransferResultMapper;
-import com.interview.model.Transfer;
-import org.skife.jdbi.v2.sqlobject.*;
+import com.moneytransfer.dao.mapper.TransferResultMapper;
+import com.moneytransfer.model.Transfer;
+import org.skife.jdbi.v2.sqlobject.Bind;
+import org.skife.jdbi.v2.sqlobject.BindBean;
+import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
+import org.skife.jdbi.v2.sqlobject.SqlQuery;
+import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import java.util.List;

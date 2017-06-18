@@ -1,4 +1,4 @@
-package com.interview;
+package com.moneytransfer;
 
 public class ServiceException extends RuntimeException {
 

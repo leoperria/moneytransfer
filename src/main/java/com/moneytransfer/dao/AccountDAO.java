@@ -1,11 +1,10 @@
-package com.interview.dao;
+package com.moneytransfer.dao;
 
-import com.interview.model.Account;
+import com.moneytransfer.model.Account;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
-import org.skife.jdbi.v2.sqlobject.Transaction;
 
 import java.util.List;
 

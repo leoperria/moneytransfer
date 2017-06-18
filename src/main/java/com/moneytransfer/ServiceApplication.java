@@ -1,14 +1,14 @@
-package com.interview;
+package com.moneytransfer;
 
-import com.interview.client.MoneyTransferClient;
-import com.interview.dao.AccountDAO;
-import com.interview.dao.TransferDAO;
-import com.interview.dao.mapper.AccountResultMapper;
-import com.interview.dao.mapper.TransferResultMapper;
-import com.interview.resources.AccountResource;
-import com.interview.resources.AutoTestResource;
-import com.interview.resources.TransferResource;
-import com.interview.services.MoneyService;
+import com.moneytransfer.client.MoneyTransferClient;
+import com.moneytransfer.dao.AccountDAO;
+import com.moneytransfer.dao.TransferDAO;
+import com.moneytransfer.dao.mapper.AccountResultMapper;
+import com.moneytransfer.dao.mapper.TransferResultMapper;
+import com.moneytransfer.resources.AccountResource;
+import com.moneytransfer.resources.AutoTestResource;
+import com.moneytransfer.resources.TransferResource;
+import com.moneytransfer.services.MoneyService;
 import io.dropwizard.Application;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.db.DataSourceFactory;

@@ -1,12 +1,17 @@
-package com.interview.resources;
+package com.moneytransfer.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.interview.dao.AccountDAO;
-import com.interview.dao.TransferDAO;
-import com.interview.model.Account;
-import com.interview.model.Transfer;
+import com.moneytransfer.dao.AccountDAO;
+import com.moneytransfer.dao.TransferDAO;
+import com.moneytransfer.model.Account;
+import com.moneytransfer.model.Transfer;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;

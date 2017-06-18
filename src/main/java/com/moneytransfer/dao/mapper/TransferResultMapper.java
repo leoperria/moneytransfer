@@ -1,6 +1,6 @@
-package com.interview.dao.mapper;
+package com.moneytransfer.dao.mapper;
 
-import com.interview.model.Transfer;
+import com.moneytransfer.model.Transfer;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 

@@ -1,4 +1,4 @@
-package com.interview.model;
+package com.moneytransfer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.dropwizard.jackson.JsonSnakeCase;

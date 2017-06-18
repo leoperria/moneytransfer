@@ -1,12 +1,11 @@
-package com.interview.services;
+package com.moneytransfer.services;
 
 
-import com.codahale.metrics.annotation.Timed;
-import com.interview.ServiceException;
-import com.interview.dao.AccountDAO;
-import com.interview.dao.TransferDAO;
-import com.interview.model.Account;
-import com.interview.model.Transfer;
+import com.moneytransfer.ServiceException;
+import com.moneytransfer.dao.AccountDAO;
+import com.moneytransfer.dao.TransferDAO;
+import com.moneytransfer.model.Account;
+import com.moneytransfer.model.Transfer;
 import org.skife.jdbi.v2.sqlobject.CreateSqlObject;
 import org.skife.jdbi.v2.sqlobject.Transaction;
 

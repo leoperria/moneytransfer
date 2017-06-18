@@ -1,8 +1,8 @@
-package com.interview.client;
+package com.moneytransfer.client;
 
 
-import com.interview.model.Account;
-import com.interview.model.Transfer;
+import com.moneytransfer.model.Account;
+import com.moneytransfer.model.Transfer;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
