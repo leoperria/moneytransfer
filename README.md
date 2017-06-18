@@ -82,3 +82,27 @@ Returns the list of transfer of account 1
 In this case transfer object has a status, for example "new", "committed" or "aborted". The transfer object is created with the POST verb in "new" status. The client then must acknowledge the transfer before a certain amount of time, issuing a PUT to the transfer id. A this point the fund transfer is actually performed and the transfer is marked as "committed". 
 If something goes wrong or the timeout expires the transfer is marked as "aborted", everything is rolled back and so accounts status doesn't change. 
 There are a couple of good properties here: first of all the POST API creates every time a different transfer object (with different id) that works as a "booking" for the actual transfer. Second the PUT API will be idempotent so committing two or more times the same transfer wouldn't perform the transaction more than once. This design makes the system more protected to issues like accidentally sending multiple time the same transfer.
+
+
+
+Setup postgresql database with Docker
+-----
+
+Download docker from https://www.docker.com/community-edition for your operating system.
+
+Use Docker Postgres Image to startup a database:
+
+https://hub.docker.com/_/postgres/
+
+Downloading postgres container command:
+
+```
+docker pull postgres
+```
+
+Starting postgres container command:
+
+```
+docker run --name moneytransfer_postgres -p 5432:5432 -e POSTGRES_PASSWORD=moneytransfer -e POSTGRES_USER=moneytransfer -e POSTGRES_DB=moneytransfer postgres
+```
+
