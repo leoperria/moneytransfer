@@ -16,13 +16,13 @@ database:
   driverClass: "org.postgresql.Driver"
 
   # the username
-  user: "circle"
+  user: "moneytransfer"
 
   # the password
-  password: "circle"
+  password: "moneytransfer"
 
   # the JDBC URL
-  url: "jdbc:postgresql://localhost:5432/circle"
+  url: "jdbc:postgresql://localhost:5432/moneytransfer"
 
   # the SQL query to run when validating a connection's liveness
   validationQuery: "/* APIService Health Check */ SELECT 1"
