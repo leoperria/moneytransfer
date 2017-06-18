@@ -4,7 +4,9 @@ Simple dropwizard demo, implements a RESTful API to move money from one account 
 
 -------------------------------------------------
 
+```
 POST /api/transfer
+```
 
 Move money from source_account_id to destination_account_id
 
